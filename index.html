@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>동서발전 사업소 실증 지도</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      crossorigin=""
+    >
+    <link rel="stylesheet" href="./styles.css?v=comments">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">한국동서발전 면접 스터디용</p>
+        <h1>사업소별 설비·실증 지도</h1>
+      </div>
+      <div class="source-note">
+        <span>기준: Notion 하위 페이지 정리</span>
+        <a href="https://www.notion.so/3626fd611ef98148b7b2da22f19c4abe" target="_blank" rel="noreferrer">원본 페이지</a>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="directory" aria-label="사업소 목록과 필터">
+        <div class="search-wrap">
+          <label for="site-search">검색</label>
+          <input id="site-search" type="search" placeholder="당진, 수소, 암모니아, ESS..." autocomplete="off">
+        </div>
+
+        <div class="filters" role="group" aria-label="분류 필터">
+          <button class="filter is-active" type="button" data-filter="all">전체</button>
+          <button class="filter" type="button" data-filter="thermal">석탄</button>
+          <button class="filter" type="button" data-filter="lng">LNG</button>
+          <button class="filter" type="button" data-filter="hydrogen">수소</button>
+          <button class="filter" type="button" data-filter="ammonia">암모니아</button>
+          <button class="filter" type="button" data-filter="solar">태양광</button>
+          <button class="filter" type="button" data-filter="wind">풍력</button>
+          <button class="filter" type="button" data-filter="biomass">바이오매스</button>
+          <button class="filter" type="button" data-filter="small_hydro">소수력</button>
+          <button class="filter" type="button" data-filter="waste_resource">폐자원</button>
+          <button class="filter" type="button" data-filter="storage">저장</button>
+        </div>
+
+        <div class="status-filters" role="group" aria-label="운영 상태 필터">
+          <button class="status-filter is-active" type="button" data-status-filter="all">전체상태</button>
+          <button class="status-filter" type="button" data-status-filter="operating">운영중</button>
+          <button class="status-filter" type="button" data-status-filter="construction">건설중</button>
+          <button class="status-filter" type="button" data-status-filter="planned">예정</button>
+          <button class="status-filter" type="button" data-status-filter="proposed">제안·확보</button>
+          <button class="status-filter" type="button" data-status-filter="demo">실증</button>
+          <button class="status-filter" type="button" data-status-filter="transition">전환</button>
+          <button class="status-filter" type="button" data-status-filter="check">확인필요</button>
+        </div>
+
+        <div class="quick-stats" aria-label="요약 지표">
+          <div>
+            <strong id="site-count">0</strong>
+            <span>표시 지점</span>
+          </div>
+          <div>
+            <strong id="operating-count">0</strong>
+            <span>운영중 항목</span>
+          </div>
+          <div>
+            <strong id="planned-count">0</strong>
+            <span>예정·건설·실증</span>
+          </div>
+        </div>
+
+        <ol id="site-list" class="site-list"></ol>
+      </aside>
+
+      <section class="map-shell" aria-label="한국 지도">
+        <div id="map"></div>
+        <div class="map-hint">마커에 커서를 올리거나 목록을 선택하면 세부 내용이 열립니다.</div>
+      </section>
+
+      <aside id="detail-panel" class="detail-panel" aria-live="polite">
+        <div class="empty-state">
+          <p class="eyebrow">선택 대기</p>
+          <h2>사업소를 선택하세요</h2>
+          <p>각 지점의 발전원, 용량, 실증 일정, 전환 계획, 면접 포인트를 계층으로 묶어 보여줍니다.</p>
+        </div>
+      </aside>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="./config.js?v=comments"></script>
+    <script src="./app.js?v=comments"></script>
+  </body>
+</html>
